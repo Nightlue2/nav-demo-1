@@ -116,13 +116,16 @@ ul{
     font-family: 'pingFangSC-Regular';
 }
 #dec-container{
-    position: fixed;
-    left:148px;
-    bottom:40px;
     opacity: 40%;
     z-index:-1;
-}
-.decoration{
     width: 80px;
     height: 80px;
+    left:0;
+    right:0;
+    margin:0 auto;
+    bottom: 9%;
+    position: fixed;
 }
+/* .decoration{
+    
+} */
