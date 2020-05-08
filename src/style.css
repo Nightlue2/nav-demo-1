@@ -17,13 +17,13 @@ img{max-width: 100%;max-height: 100%;}
 }
 #font-face{
     font-family: 'pingFangSC-Regular';
-    src: url('C:\Users\夜蓝\Desktop\nav-1\font\简体\PingFang Regular.ttf');
+    src: url('..\font\简体\PingFang Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }
 #font-face{
     font-family: 'pingFangSC-Bold';
-    src: url('C:\Users\夜蓝\Desktop\nav-1\font\简体\PingFang Bold.ttf');
+    src: url('..\font\简体\PingFang Bold.ttf');
     font-weight: normal;
     font-style: normal;
 }
