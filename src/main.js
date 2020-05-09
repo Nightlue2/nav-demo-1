@@ -1,8 +1,8 @@
 const tempX = localStorage.getItem('x')
 const x = JSON.parse(tempX)
 const hashMap = x || [{ imgUrl: "../img/figma.png", logoType: "image", url: "https://www.figma.com" },
-{ imgUrl: "..\\img\\iconfont.png", logoType: "image", url: "https://www.iconfont.cn" },
-{ imgUrl: "..\\img\\bootcdn.png", logoType: "image", url: "https://www.bootcdn.cn" },
+{ imgUrl: "../img/iconfont.png", logoType: "image", url: "https://www.iconfont.cn" },
+{ imgUrl: "../img/bootcdn.png", logoType: "image", url: "https://www.bootcdn.cn" },
 ]
 const $siteList = $('.siteList')
 const $lastLi = $siteList.find('li.last')
@@ -17,7 +17,7 @@ const removeHttp = (url) => {
     //     (tempUrl.indexOf('www.') === -1) ? result = { capsLetter: tempUrl[tempUrl.indexOf('/') + 2].toUpperCase(), url: url.substring(tempUrl.indexOf('/') + 2) } : result = { capsLetter: tempUrl[tempUrl.indexOf('.') + 1].toUpperCase(), url: url.substring(tempUrl.indexOf('.') + 1) }
     //     return result
     // }
-    result.url = tempUrl.replace("https://", '').replace("http://", '').replace("www.", '')
+    result.url = tempUrl.replace("https://", '').replace("http://", '').replace("www.", '').replace(/\/.*/, '')
     result.capsLetter = result.url[0].toUpperCase()
     return result
 }
@@ -26,31 +26,65 @@ const removeHttp = (url) => {
 
 const render = () => {
     $siteList.find('li:not(.last)').remove()
-    hashMap.forEach(node => {
+    hashMap.forEach((node, index) => {
         if (node.logoType === 'image') {
             let node2 = removeHttp(node.url)
             let li = $(`<li>
-            <a href="${node.url}">
-                        <div class="site">
-                            <div class="logo"><img src="" alt=''></div>
-                            <div class="link">${node2.url}</div>
-                        </div>
-                    </a>
+                <div class="site">
+                    <div class="logo"><img src="" alt=''></div>
+                    <div class="link">${node2.url}</div>
+                    <div class="close">
+                        <svg class="icon">
+                            <use xlink:href="#icon-shanchu"></use>
+                        </svg>
+                    </div>
+                </div>
             </li>`)
+            li.on('click', () => {
+                window.open(node.url)
+            })
+            li.on('click', '.close', (e) => {
+                e.stopPropagation()
+                hashMap.splice(index, 1)
+                render()
+            })
             li.find("img").attr("alt", node2.capsLetter).attr("src", node.imgUrl)
             li.insertBefore($lastLi)
         } else {
             let node2 = removeHttp(node.url)
-            $(`<li>
-            <a href="${node.url}">
+            if (node.url.indexOf('http://') === -1 && node.url.indexOf('https://') === -1) {
+                let li = $(`<li>
                 <div class="site">
                     <div class="logo">${node2.capsLetter}</div>
                     <div class="link">${node2.url}</div>
+                    <div class="close">
+                        <svg class="icon">
+                            <use xlink:href="#icon-shanchu"></use>
+                        </svg>
+                    </div>
                 </div>
-            </a>
-        </li>`).insertBefore($lastLi)
+            </li>`)
+                li.on('click', () => {
+                    window.open(node.url)
+                })
+                li.on('click', '.close', (e) => {
+                    e.stopPropagation() //阻止冒泡
+                    hashMap.splice(index, 1)
+                    render()
+                })
+                li.insertBefore($lastLi)
+            }
+            else {
+                $(`<li>
+                <a href="${node.url}">
+                    <div class="site">
+                        <div class="logo">${node2.capsLetter}</div>
+                        <div class="link">${node2.url}</div>
+                    </div>
+                </a>
+            </li>`).insertBefore($lastLi)
+            }
         }
-
     })
 }
 
