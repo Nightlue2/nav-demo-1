@@ -1,5 +1,5 @@
 *{margin:0;padding:0;box-sizing: border-box;}
-*:before,*:after{box-sizing:border-box}
+*:before,*:after{box-sizing:border-box;}
 ul,ol{list-style:none;}
 body{
     background-color: #E0E3DF;
@@ -32,9 +32,46 @@ img{max-width: 100%;max-height: 100%;}
     margin-left:33px;
     margin-right:33px;
 }
+@media (min-width:500px){
+    .globalHeader{
+        margin-bottom: 40px;
+    }
+}
+@media (max-width:500px){
+    .globalHeader{
+        margin-bottom: 30px;
+    }
+}
 .searchForm{
     display:flex;
     justify-content:space-between;
+}
+@media (min-width:500px){
+    .searchForm{
+        max-width: 450px;
+        margin-left:auto;
+        margin-right: auto;
+    }
+}
+@media (max-width:500px){
+    .searchForm{
+        min-width: 309px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.ulContainer{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width:500px){
+    .ulContainer{
+        border:1px solid black;
+        width: 348px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 .searchForm > input{
     width:100%;
@@ -54,14 +91,30 @@ img{max-width: 100%;max-height: 100%;}
     font-size: 16px;
     font-family:'pingFangSC-Bold';
 }
-ul{
+.siteList{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin:25px 33px;
 }
-li{
+@media (min-width:500px){
+    .siteList{
+        margin-left:48px;
+        margin-right: -36px;
+    }
+}
+@media (max-width:500px){
+    .siteList{
+        min-width: 348px;
+        border:1px solid red;
+        justify-content: space-between;
+    }
+}
+.liMargin{
     cursor: pointer;
+}
+@media (min-width:500px){
+    .liMargin{
+        margin-right: 36px;
+    }
 }
 .site{
     width:149px;
@@ -134,4 +187,12 @@ li{
     position: absolute;
     right:7px;
     top:4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    
+}
+.siteList .site:hover >.close{
+    visibility: visible;
+    opacity: 100%;
 }

@@ -29,7 +29,7 @@ const render = () => {
     hashMap.forEach((node, index) => {
         if (node.logoType === 'image') {
             let node2 = removeHttp(node.url)
-            let li = $(`<li>
+            let li = $(`<li class="liMargin">
                 <div class="site">
                     <div class="logo"><img src="" alt=''></div>
                     <div class="link">${node2.url}</div>
@@ -53,7 +53,7 @@ const render = () => {
         } else {
             let node2 = removeHttp(node.url)
             if (node.url.indexOf('http://') === -1 && node.url.indexOf('https://') === -1) {
-                let li = $(`<li>
+                let li = $(`<li class="liMargin">
                 <div class="site">
                     <div class="logo">${node2.capsLetter}</div>
                     <div class="link">${node2.url}</div>
@@ -75,7 +75,7 @@ const render = () => {
                 li.insertBefore($lastLi)
             }
             else {
-                $(`<li>
+                $(`<li class="liMargin">
                 <a href="${node.url}">
                     <div class="site">
                         <div class="logo">${node2.capsLetter}</div>
