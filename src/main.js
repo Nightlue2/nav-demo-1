@@ -9,6 +9,7 @@ const $lastLi = $siteList.find('li.last')
 
 const removeHttp = (url) => {
     let tempUrl = url
+    console.log(url)
     let result = { url: "", capsLetter: "" }
     // if (tempUrl.indexOf('http://') === -1 && tempUrl.indexOf('https://') === -1) { //没有http的情况
     //     (tempUrl.indexOf('www.') === -1) ? result = { capsLetter: tempUrl[0].toUpperCase(), url: url } : result = { capsLetter: tempUrl[4].toUpperCase(), url: tempUrl.substring(4) }
@@ -40,13 +41,15 @@ const render = () => {
                     </div>
                 </div>
             </li>`)
-            li.on('click', () => {
+            let site = li.find('.site')
+            site.on('click', function () {
                 window.open(node.url)
             })
-            li.on('click', '.close', (e) => {
+            site.on('click', '.close', (e) => {
                 e.stopPropagation()
                 hashMap.splice(index, 1)
                 render()
+                console.log(hashMap)
             })
             li.find("img").attr("alt", node2.capsLetter).attr("src", node.imgUrl)
             li.insertBefore($lastLi)
@@ -64,31 +67,56 @@ const render = () => {
                     </div>
                 </div>
             </li>`)
-                li.on('click', () => {
+                node.url = "http://" + node.url
+                let site = li.find('.site')
+                site.on('click', function () {
                     window.open(node.url)
                 })
-                li.on('click', '.close', (e) => {
-                    e.stopPropagation() //阻止冒泡
+                site.on('click', '.close', (e) => {
+                    e.stopPropagation()
                     hashMap.splice(index, 1)
                     render()
+                    console.log(hashMap)
                 })
                 li.insertBefore($lastLi)
             }
             else {
-                $(`<li class="liMargin">
-                <a href="${node.url}">
+                let li = $(`<li class="liMargin">
                     <div class="site">
                         <div class="logo">${node2.capsLetter}</div>
                         <div class="link">${node2.url}</div>
+                        <div class="close">
+                            <svg class="icon">
+                                <use xlink:href="#icon-shanchu"></use>
+                            </svg>
+                        </div>
                     </div>
-                </a>
-            </li>`).insertBefore($lastLi)
+                </li>`)
+                let site = li.find('.site')
+                site.on('click', function () {
+                    window.open(node.url)
+                })
+                site.on('click', '.close', (e) => {
+                    e.stopPropagation()
+                    hashMap.splice(index, 1)
+                    render()
+                    console.log(hashMap)
+                })
+                li.insertBefore($lastLi)
             }
         }
     })
 }
 
 render()
+$(document).on('keypress', (e) => {
+    const { key } = e
+    for (let i = 0; i < hashMap.length; i++) {
+        if (hashMap[i].url.replace("http://", '').replace("https://", '').replace("www.", '')[0] === key) {
+            window.open(hashMap[i].url)
+        }
+    }
+})
 
 $('.addSite')
     .on('click', () => {
@@ -125,7 +153,7 @@ $('.addSite')
             `).insertBefore($lastLi)
         }*/
     })
-/*window.onbeforeunload = () => {
+window.onbeforeunload = function () {
     let string = JSON.stringify(hashMap)
     localStorage.setItem('x', string)
-}*/
+}

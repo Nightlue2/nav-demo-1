@@ -1,5 +1,5 @@
 *{margin:0;padding:0;box-sizing: border-box;}
-*:before,*:after{box-sizing:border-box}
+*:before,*:after{box-sizing:border-box;}
 ul,ol{list-style:none;}
 body{
     background-color: #E0E3DF;
@@ -17,24 +17,60 @@ img{max-width: 100%;max-height: 100%;}
 }
 #font-face{
     font-family: 'pingFangSC-Regular';
-    src: url('C:\Users\夜蓝\Desktop\nav-1\font\简体\PingFang Regular.ttf');
+    src: url('/PingFang Regular.db1d5520.ttf');
     font-weight: normal;
     font-style: normal;
 }
 #font-face{
     font-family: 'pingFangSC-Bold';
-    src: url('C:\Users\夜蓝\Desktop\nav-1\font\简体\PingFang Bold.ttf');
+    src: url('/PingFang Bold.47be18a0.ttf');
     font-weight: normal;
     font-style: normal;
 }
 .globalHeader{
-    margin-top:57px;
-    margin-left:33px;
-    margin-right:33px;
+    margin-left:9%;
+    margin-right:9%;
+}
+@media (min-width:500px){
+    .globalHeader{
+        margin-top:100px;
+        margin-bottom: 60px;
+    }
+}
+@media (max-width:500px){
+    .globalHeader{
+        margin-bottom: 30px;
+        margin-top:57px;
+    }
 }
 .searchForm{
     display:flex;
     justify-content:space-between;
+}
+@media (min-width:500px){
+    .searchForm{
+        max-width: 450px;
+        margin-left:auto;
+        margin-right: auto;
+    }
+}
+@media (max-width:500px){
+    .searchForm{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (min-width:500px){
+    .ulContainer{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media (max-width:500px){
+    .ulContainer{
+        margin-left:9%;
+        margin-right: 9%;
+    }
 }
 .searchForm > input{
     width:100%;
@@ -54,11 +90,31 @@ img{max-width: 100%;max-height: 100%;}
     font-size: 16px;
     font-family:'pingFangSC-Bold';
 }
-ul{
+.searchForm >button:hover{
+    cursor: pointer;
+}
+.siteList{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin:25px 33px;
+    /*margin-bottom:16px; */
+}
+@media (min-width:500px){
+    .siteList{
+        max-width: 1463px;
+        margin-right: -60px;
+        justify-content: flex-start;
+    }
+}
+@media (max-width:500px){
+    .siteList{
+        justify-content: space-between;
+    }
+}
+@media (min-width:500px){
+    .liMargin{
+        margin-right: 60px;
+        margin-bottom:16px;
+    }
 }
 .site{
     width:149px;
@@ -69,7 +125,8 @@ ul{
     align-items: center;
     flex-direction: column;
     border-radius: 5px;
-    margin-bottom:16px;
+    position: relative;
+    cursor: pointer;
 }
 .site > .logo{
     width:61px;
@@ -97,7 +154,19 @@ ul{
     align-items: center;
     flex-direction: column;
     border-radius: 5px;
-    margin-bottom:16px;
+}
+.addSite:hover{
+    cursor: pointer;
+}
+@media (min-width:500px){
+    .addSite{
+        margin-bottom: 60px;
+    }
+}
+@media (max-width:500px){
+    .addSite{
+        margin-bottom: 16px;
+    }
 }
 .addSite > .icon-container{
     width:61px;
@@ -116,15 +185,33 @@ ul{
     font-family: 'pingFangSC-Regular';
 }
 #dec-container{
-    position: fixed;
-    left:148px;
-    bottom:40px;
     opacity: 40%;
     z-index:-1;
-}
-.decoration{
     width: 80px;
     height: 80px;
+    left:0;
+    right:0;
+    margin:0 auto;
+    bottom: 9%;
+    position: fixed;
+}
+.siteList .site > .close{
+    position: absolute;
+    right:7px;
+    top:4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+.siteList .site:hover >.close{
+    visibility: visible;
+    opacity: 100%;
+}
+@media (min-width:500px){
+    .last{
+        margin-right: 60px;
+        margin-bottom:16px;
+    }
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

@@ -125,11 +125,11 @@ var hashMap = x || [{
   logoType: "image",
   url: "https://www.figma.com"
 }, {
-  imgUrl: "..\\img\\iconfont.png",
+  imgUrl: "../img/iconfont.png",
   logoType: "image",
   url: "https://www.iconfont.cn"
 }, {
-  imgUrl: "..\\img\\bootcdn.png",
+  imgUrl: "../img/bootcdn.png",
   logoType: "image",
   url: "https://www.bootcdn.cn"
 }];
@@ -138,6 +138,7 @@ var $lastLi = $siteList.find('li.last');
 
 var removeHttp = function removeHttp(url) {
   var tempUrl = url;
+  console.log(url);
   var result = {
     url: "",
     capsLetter: ""
@@ -149,28 +150,83 @@ var removeHttp = function removeHttp(url) {
   //     return result
   // }
 
-  result.url = tempUrl.replace("https://", '').replace("http://", '').replace("www.", '');
+  result.url = tempUrl.replace("https://", '').replace("http://", '').replace("www.", '').replace(/\/.*/, '');
   result.capsLetter = result.url[0].toUpperCase();
   return result;
 };
 
 var render = function render() {
   $siteList.find('li:not(.last)').remove();
-  hashMap.forEach(function (node) {
+  hashMap.forEach(function (node, index) {
     if (node.logoType === 'image') {
       var node2 = removeHttp(node.url);
-      var li = $("<li>\n            <a href=\"".concat(node.url, "\">\n                        <div class=\"site\">\n                            <div class=\"logo\"><img src=\"\" alt=''></div>\n                            <div class=\"link\">").concat(node2.url, "</div>\n                        </div>\n                    </a>\n            </li>"));
+      var li = $("<li class=\"liMargin\">\n                <div class=\"site\">\n                    <div class=\"logo\"><img src=\"\" alt=''></div>\n                    <div class=\"link\">".concat(node2.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
+      var site = li.find('.site');
+      site.on('click', function () {
+        window.open(node.url);
+      });
+      site.on('click', '.close', function (e) {
+        e.stopPropagation();
+        hashMap.splice(index, 1);
+        render();
+        console.log(hashMap);
+      });
       li.find("img").attr("alt", node2.capsLetter).attr("src", node.imgUrl);
       li.insertBefore($lastLi);
     } else {
       var _node = removeHttp(node.url);
 
-      $("<li>\n            <a href=\"".concat(node.url, "\">\n                <div class=\"site\">\n                    <div class=\"logo\">").concat(_node.capsLetter, "</div>\n                    <div class=\"link\">").concat(_node.url, "</div>\n                </div>\n            </a>\n        </li>")).insertBefore($lastLi);
+      if (node.url.indexOf('http://') === -1 && node.url.indexOf('https://') === -1) {
+        var _li = $("<li class=\"liMargin\">\n                <div class=\"site\">\n                    <div class=\"logo\">".concat(_node.capsLetter, "</div>\n                    <div class=\"link\">").concat(_node.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
+
+        node.url = "http://" + node.url;
+
+        var _site = _li.find('.site');
+
+        _site.on('click', function () {
+          window.open(node.url);
+        });
+
+        _site.on('click', '.close', function (e) {
+          e.stopPropagation();
+          hashMap.splice(index, 1);
+          render();
+          console.log(hashMap);
+        });
+
+        _li.insertBefore($lastLi);
+      } else {
+        var _li2 = $("<li class=\"liMargin\">\n                    <div class=\"site\">\n                        <div class=\"logo\">".concat(_node.capsLetter, "</div>\n                        <div class=\"link\">").concat(_node.url, "</div>\n                        <div class=\"close\">\n                            <svg class=\"icon\">\n                                <use xlink:href=\"#icon-shanchu\"></use>\n                            </svg>\n                        </div>\n                    </div>\n                </li>"));
+
+        var _site2 = _li2.find('.site');
+
+        _site2.on('click', function () {
+          window.open(node.url);
+        });
+
+        _site2.on('click', '.close', function (e) {
+          e.stopPropagation();
+          hashMap.splice(index, 1);
+          render();
+          console.log(hashMap);
+        });
+
+        _li2.insertBefore($lastLi);
+      }
     }
   });
 };
 
 render();
+$(document).on('keypress', function (e) {
+  var key = e.key;
+
+  for (var i = 0; i < hashMap.length; i++) {
+    if (hashMap[i].url.replace("http://", '').replace("https://", '').replace("www.", '')[0] === key) {
+      window.open(hashMap[i].url);
+    }
+  }
+});
 $('.addSite').on('click', function () {
   var url = window.prompt('输入要添加的网址：');
   hashMap.push({
@@ -208,10 +264,11 @@ $('.addSite').on('click', function () {
       `).insertBefore($lastLi)
   }*/
 });
-/*window.onbeforeunload = () => {
-    let string = JSON.stringify(hashMap)
-    localStorage.setItem('x', string)
-}*/
+
+window.onbeforeunload = function () {
+  var string = JSON.stringify(hashMap);
+  localStorage.setItem('x', string);
+};
 },{}],"../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -240,7 +297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63075" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61710" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
