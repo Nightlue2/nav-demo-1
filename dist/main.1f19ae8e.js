@@ -121,15 +121,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var tempX = localStorage.getItem('x');
 var x = JSON.parse(tempX);
 var hashMap = x || [{
-  imgUrl: "../img/figma.png",
+  imgUrl: "https://i0.hdslb.com/bfs/album/a3a4f04d7d00b78692b4cbd778708ecab740e17e.png",
   logoType: "image",
   url: "https://www.figma.com"
 }, {
-  imgUrl: "../img/iconfont.png",
+  imgUrl: "https://i0.hdslb.com/bfs/album/0dd6ff67d3a5fe7ac8af5e7559f6c39d06427f4f.png",
   logoType: "image",
   url: "https://www.iconfont.cn"
 }, {
-  imgUrl: "../img/bootcdn.png",
+  imgUrl: "https://i0.hdslb.com/bfs/album/a4e4bb50f97cdac284bcac63b6cb680059e31883.png",
   logoType: "image",
   url: "https://www.bootcdn.cn"
 }];
@@ -138,7 +138,6 @@ var $lastLi = $siteList.find('li.last');
 
 var removeHttp = function removeHttp(url) {
   var tempUrl = url;
-  console.log(url);
   var result = {
     url: "",
     capsLetter: ""
@@ -229,6 +228,7 @@ $(document).on('keypress', function (e) {
 });
 $('.addSite').on('click', function () {
   var url = window.prompt('输入要添加的网址：');
+  if (!url) return window.alert('网址不能为空！');
   hashMap.push({
     logoType: "text",
     url: url
@@ -269,7 +269,7 @@ window.onbeforeunload = function () {
   var string = JSON.stringify(hashMap);
   localStorage.setItem('x', string);
 };
-},{}],"../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -297,7 +297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61710" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60596" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -473,5 +473,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map
