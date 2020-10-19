@@ -118,9 +118,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-var tempX = localStorage.getItem('x');
-var x = JSON.parse(tempX);
-var hashMap = x || [{
+var historyMap = JSON.parse(localStorage.getItem('historyMap'));
+var hashMap = historyMap || [{
   imgUrl: "https://i0.hdslb.com/bfs/album/a3a4f04d7d00b78692b4cbd778708ecab740e17e.png",
   logoType: "image",
   url: "https://www.figma.com"
@@ -132,23 +131,25 @@ var hashMap = x || [{
   imgUrl: "https://i0.hdslb.com/bfs/album/a4e4bb50f97cdac284bcac63b6cb680059e31883.png",
   logoType: "image",
   url: "https://www.bootcdn.cn"
+}, {
+  imgUrl: "https://i0.hdslb.com/bfs/album/db689d32af19f45a847a43c55e948da75c8e3e6e.png",
+  logoType: "image",
+  url: "https://www.zhihu.com"
+}, {
+  imgUrl: "https://i0.hdslb.com/bfs/album/8e3af7e28d01630aab704c8132ddd819f2943eb4.png",
+  logoType: "image",
+  url: "https://github.com"
 }];
 var $siteList = $('.siteList');
 var $lastLi = $siteList.find('li.last');
 
 var removeHttp = function removeHttp(url) {
+  if (!url) return;
   var tempUrl = url;
   var result = {
     url: "",
     capsLetter: ""
-  }; // if (tempUrl.indexOf('http://') === -1 && tempUrl.indexOf('https://') === -1) { //没有http的情况
-  //     (tempUrl.indexOf('www.') === -1) ? result = { capsLetter: tempUrl[0].toUpperCase(), url: url } : result = { capsLetter: tempUrl[4].toUpperCase(), url: tempUrl.substring(4) }
-  //     return result
-  // } else {
-  //     (tempUrl.indexOf('www.') === -1) ? result = { capsLetter: tempUrl[tempUrl.indexOf('/') + 2].toUpperCase(), url: url.substring(tempUrl.indexOf('/') + 2) } : result = { capsLetter: tempUrl[tempUrl.indexOf('.') + 1].toUpperCase(), url: url.substring(tempUrl.indexOf('.') + 1) }
-  //     return result
-  // }
-
+  };
   result.url = tempUrl.replace("https://", '').replace("http://", '').replace("www.", '').replace(/\/.*/, '');
   result.capsLetter = result.url[0].toUpperCase();
   return result;
@@ -159,7 +160,7 @@ var render = function render() {
   hashMap.forEach(function (node, index) {
     if (node.logoType === 'image') {
       var node2 = removeHttp(node.url);
-      var li = $("<li class=\"liMargin\">\n                <div class=\"site\">\n                    <div class=\"logo\"><img src=\"\" alt=''></div>\n                    <div class=\"link\">".concat(node2.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
+      var li = $("<li class=\"liMargin hvr-glow\">\n                <div class=\"site\">\n                    <div class=\"logo\"><img src=\"\" alt=''></div>\n                    <div class=\"link\">".concat(node2.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
       var site = li.find('.site');
       site.on('click', function () {
         window.open(node.url);
@@ -168,7 +169,6 @@ var render = function render() {
         e.stopPropagation();
         hashMap.splice(index, 1);
         render();
-        console.log(hashMap);
       });
       li.find("img").attr("alt", node2.capsLetter).attr("src", node.imgUrl);
       li.insertBefore($lastLi);
@@ -176,7 +176,7 @@ var render = function render() {
       var _node = removeHttp(node.url);
 
       if (node.url.indexOf('http://') === -1 && node.url.indexOf('https://') === -1) {
-        var _li = $("<li class=\"liMargin\">\n                <div class=\"site\">\n                    <div class=\"logo\">".concat(_node.capsLetter, "</div>\n                    <div class=\"link\">").concat(_node.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
+        var _li = $("<li class=\"liMargin  hvr-glow\">\n                <div class=\"site\">\n                    <div class=\"logo\">".concat(_node.capsLetter, "</div>\n                    <div class=\"link\">").concat(_node.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
 
         node.url = "http://" + node.url;
 
@@ -228,7 +228,8 @@ $(document).on('keypress', function (e) {
 });
 $('.addSite').on('click', function () {
   var url = window.prompt('输入要添加的网址：');
-  if (!url) return window.alert('网址不能为空！');
+  if (url === '') return window.alert('网址不能为空！');
+  if (!url) return;
   hashMap.push({
     logoType: "text",
     url: url
@@ -266,8 +267,7 @@ $('.addSite').on('click', function () {
 });
 
 window.onbeforeunload = function () {
-  var string = JSON.stringify(hashMap);
-  localStorage.setItem('x', string);
+  localStorage.setItem('historyMap', JSON.stringify(historyMap));
 };
 },{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -297,7 +297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60596" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53092" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
