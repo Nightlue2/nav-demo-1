@@ -1,9 +1,9 @@
 const historyMap = JSON.parse(localStorage.getItem('historyMap'))
-const hashMap = historyMap || [{ imgUrl: "https://i0.hdslb.com/bfs/album/a3a4f04d7d00b78692b4cbd778708ecab740e17e.png", logoType: "image", url: "https://www.figma.com" },
-{ imgUrl: "https://i0.hdslb.com/bfs/album/0dd6ff67d3a5fe7ac8af5e7559f6c39d06427f4f.png", logoType: "image", url: "https://www.iconfont.cn" },
-{ imgUrl: "https://i0.hdslb.com/bfs/album/a4e4bb50f97cdac284bcac63b6cb680059e31883.png", logoType: "image", url: "https://www.bootcdn.cn" },
-{ imgUrl: "https://i0.hdslb.com/bfs/album/db689d32af19f45a847a43c55e948da75c8e3e6e.png", logoType: "image", url: "https://www.zhihu.com" },
-{ imgUrl: "https://i0.hdslb.com/bfs/album/8e3af7e28d01630aab704c8132ddd819f2943eb4.png", logoType: "image", url: "https://github.com" },
+const hashMap = historyMap || [{ imgUrl: "https://i.loli.net/2020/10/19/39JO16gPvhSEBZF.png", logoType: "image", url: "https://www.figma.com" },
+{ imgUrl: "https://i.loli.net/2020/10/19/6sONMzgcVPbQleo.png", logoType: "image", url: "https://www.iconfont.cn" },
+{ imgUrl: "https://i.loli.net/2020/10/19/fA87jRZbP92yhYm.png", logoType: "image", url: "https://www.bootcdn.cn" },
+{ imgUrl: "https://i.loli.net/2020/10/19/WEQGv8RznqBHUhC.png", logoType: "image", url: "https://www.zhihu.com" },
+{ imgUrl: "https://i.loli.net/2020/10/19/bZc5wN9xDAROQKH.png", logoType: "image", url: "https://github.com" },
 ]
 const $siteList = $('.siteList')
 const $lastLi = $siteList.find('li.last')
