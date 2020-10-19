@@ -72,7 +72,7 @@ const render = () => {
                 li.insertBefore($lastLi)
             }
             else {
-                let li = $(`<li class="liMargin">
+                let li = $(`<li class="liMargin  hvr-glow">
                     <div class="site">
                         <div class="logo">${node2.capsLetter}</div>
                         <div class="link">${node2.url}</div>
@@ -116,35 +116,6 @@ $('.addSite')
         if(!url) return;
         hashMap.push({ logoType: "text", url: url })
         render()
-        /*if (url1.indexOf('http://') != 0 && url1.indexOf('https://') != 0) { //判断用户加没加http前缀
-            url2 = 'http://' + url1
-            console.log('happy birthday')
-            let tempLetter = url1[0]
-            const capsLetter = tempLetter.toUpperCase()
-            const $li = $(`<li>
-                <a href="${url2}">
-                    <div class="site">
-                        <div class="logo">${capsLetter}</div>
-                        <div class="link">${url1}</div>
-                    </div>
-                </a>
-            </li>
-            `).insertBefore($lastLi)
-        } else {
-            let index = url1.indexOf('/') + 2
-            let tempLetter = url1[index]
-            console.log(tempLetter)
-            const capsLetter = tempLetter.toUpperCase()
-            const $li = $(`<li>
-                <a href="${url1}">
-                    <div class="site">
-                        <div class="logo">${capsLetter}</div>
-                        <div class="link">${url1}</div>
-                    </div>
-                </a>
-            </li>
-            `).insertBefore($lastLi)
-        }*/
     })
 window.onbeforeunload = ()=> {
     localStorage.setItem('historyMap', JSON.stringify(historyMap))
