@@ -128,7 +128,7 @@ var hashMap = historyMap || [{
   logoType: "image",
   url: "https://www.iconfont.cn"
 }, {
-  imgUrl: "https://i.loli.net/2020/10/19/fA87jRZbP92yhYm.png",
+  imgUrl: "https://i.loli.net/2020/10/27/AnqCXgFKjdU2MJh.png",
   logoType: "image",
   url: "https://www.bootcdn.cn"
 }, {
@@ -241,4 +241,4 @@ window.onbeforeunload = function () {
   localStorage.setItem('historyMap', JSON.stringify(historyMap));
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.eb2e449f.js.map
+//# sourceMappingURL=main.c68d809c.js.map
