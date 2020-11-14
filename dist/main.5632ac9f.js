@@ -176,7 +176,7 @@ var render = function render() {
       var _node = removeHttp(node.url);
 
       if (node.url.indexOf('http://') === -1 && node.url.indexOf('https://') === -1) {
-        var _li = $("<li class=\"liMargin  hvr-glow\">\n                <div class=\"site\">\n                    <div class=\"logo\">".concat(_node.capsLetter, "</div>\n                    <div class=\"link\">").concat(_node.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
+        var _li = $("<li class=\"liMargin hvr-glow\">\n                <div class=\"site\">\n                    <div class=\"logo\">".concat(_node.capsLetter, "</div>\n                    <div class=\"link\">").concat(_node.url, "</div>\n                    <div class=\"close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-shanchu\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </li>"));
 
         node.url = "http://" + node.url;
 
@@ -190,7 +190,6 @@ var render = function render() {
           e.stopPropagation();
           hashMap.splice(index, 1);
           render();
-          console.log(hashMap);
         });
 
         _li.insertBefore($lastLi);
@@ -207,7 +206,6 @@ var render = function render() {
           e.stopPropagation();
           hashMap.splice(index, 1);
           render();
-          console.log(hashMap);
         });
 
         _li2.insertBefore($lastLi);
@@ -241,4 +239,4 @@ window.onbeforeunload = function () {
   localStorage.setItem('historyMap', JSON.stringify(historyMap));
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.c68d809c.js.map
+//# sourceMappingURL=main.5632ac9f.js.map

@@ -156,6 +156,29 @@ img {
     margin-bottom: 16px;
   }
 }
+@media (max-width:370px){
+  .globalHeader {
+    margin-bottom: 30px;
+    margin-top: 57px;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
+
+  .searchForm {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ulContainer {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .siteList {
+    justify-content: space-between;
+  }
+  .addSite {
+    margin-bottom: 16px;
+  }
+}
 .searchForm {
   display: flex;
   justify-content: space-between;
@@ -184,7 +207,6 @@ img {
 .siteList {
   display: flex;
   flex-wrap: wrap;
-  /*margin-bottom:16px; */
 }
 .liMargin {
   margin-bottom: 16px;
@@ -275,4 +297,4 @@ img {
 }
 
 
-/*# sourceMappingURL=style.849f6b81.css.map */
+/*# sourceMappingURL=style.1f9eae02.css.map */

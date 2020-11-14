@@ -1,9 +1,10 @@
 const historyMap = JSON.parse(localStorage.getItem('historyMap'))
-const hashMap = historyMap || [{ imgUrl: "https://i.loli.net/2020/10/19/39JO16gPvhSEBZF.png", logoType: "image", url: "https://www.figma.com" },
-{ imgUrl: "https://i.loli.net/2020/10/19/6sONMzgcVPbQleo.png", logoType: "image", url: "https://www.iconfont.cn" },
-{ imgUrl: "https://i.loli.net/2020/10/27/AnqCXgFKjdU2MJh.png", logoType: "image", url: "https://www.bootcdn.cn" },
-{ imgUrl: "https://i.loli.net/2020/10/19/WEQGv8RznqBHUhC.png", logoType: "image", url: "https://www.zhihu.com" },
-{ imgUrl: "https://i.loli.net/2020/10/19/bZc5wN9xDAROQKH.png", logoType: "image", url: "https://github.com" },
+const hashMap = historyMap || [
+    { imgUrl: "https://i.loli.net/2020/10/19/39JO16gPvhSEBZF.png", logoType: "image", url: "https://www.figma.com" },
+    { imgUrl: "https://i.loli.net/2020/10/19/6sONMzgcVPbQleo.png", logoType: "image", url: "https://www.iconfont.cn" },
+    { imgUrl: "https://i.loli.net/2020/10/27/AnqCXgFKjdU2MJh.png", logoType: "image", url: "https://www.bootcdn.cn" },
+    { imgUrl: "https://i.loli.net/2020/10/19/WEQGv8RznqBHUhC.png", logoType: "image", url: "https://www.zhihu.com" },
+    { imgUrl: "https://i.loli.net/2020/10/19/bZc5wN9xDAROQKH.png", logoType: "image", url: "https://github.com" },
 ]
 const $siteList = $('.siteList')
 const $lastLi = $siteList.find('li.last')
@@ -47,7 +48,7 @@ const render = () => {
         } else {
             let node2 = removeHttp(node.url)
             if (node.url.indexOf('http://') === -1 && node.url.indexOf('https://') === -1) {
-                let li = $(`<li class="liMargin  hvr-glow">
+                let li = $(`<li class="liMargin hvr-glow">
                 <div class="site">
                     <div class="logo">${node2.capsLetter}</div>
                     <div class="link">${node2.url}</div>
@@ -67,7 +68,6 @@ const render = () => {
                     e.stopPropagation()
                     hashMap.splice(index, 1)
                     render()
-                    console.log(hashMap)
                 })
                 li.insertBefore($lastLi)
             }
@@ -91,7 +91,6 @@ const render = () => {
                     e.stopPropagation()
                     hashMap.splice(index, 1)
                     render()
-                    console.log(hashMap)
                 })
                 li.insertBefore($lastLi)
             }
